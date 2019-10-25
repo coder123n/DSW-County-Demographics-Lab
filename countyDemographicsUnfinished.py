@@ -11,6 +11,8 @@ def main():
     print(state_with_most_counties(counties))
 
 def high_income_counties(counties):
+	for data in counties:
+		
     """Return a LIST of the counties with a median household income over $90,000."""
     
 
