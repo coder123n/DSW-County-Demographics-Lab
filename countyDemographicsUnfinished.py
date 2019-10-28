@@ -11,26 +11,45 @@ def main():
     print(state_with_most_counties(counties))
 
 def high_income_counties(counties):
-	for data in counties:
-		
     """Return a LIST of the counties with a median household income over $90,000."""
-    
+    mh_counties = []
+    for data in counties:
+        if data["Income"]["Median Household Income"] > 90000:
+            mh_counties.append(data["County"])
+    return(mh_counties)
 
 def lowest_median_income(counties):
     """Return a name of a county with the lowest median household income"""
-    
+    lowestIncome = counties[0]
+    for data in counties:
+        if data["Income"]["Median Household Income"] < lowestIncome["Income"]["Median Household Income"]:
+            lowestIncome = data
+    return(lowestIncome["County"])
 
 def alphabetically_first_county(counties):
     """Return the county with the name that comes first alphabetically."""
     #Hint: you can use < to compare strings in Python. ex) "cat" < "dog" gives the value True
-
+    name = counties[0]
+    for data in counties:
+        if data["County"] < name["County"]:
+            name = data
+    return(name["County"])
     
 def percent_most_under_18(counties):
     """Return the highest percent of under 18 year olds."""    
-    
+    perei = counties[0]
+    for data in counties:
+        if data["Age"]["Percent Under 18 Years"] > perei["Age"]["Percent Under 18 Years"]:
+            perei = data
+    return(perei["Age"]["Percent Under 18 Years"])
 
 def county_most_under_18(counties):
     """Return the name a county with the highest percent of under 18 year olds."""
+    perei = counties[0]
+    for data in counties:
+        if data["Age"]["Percent Under 18 Years"] > perei["Age"]["Percent Under 18 Years"]:
+            perei = data
+    return(perei["County"])
     
 def state_with_most_counties(counties):
     """Return a state that has the most counties."""
