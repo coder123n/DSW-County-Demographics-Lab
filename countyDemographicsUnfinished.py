@@ -9,6 +9,7 @@ def main():
     print(percent_most_under_18(counties))
     print(lowest_median_income(counties))
     print(state_with_most_counties(counties))
+    print(your_interesting_demographic_function(counties))
 
 def high_income_counties(counties):
     """Return a LIST of the counties with a median household income over $90,000."""
@@ -54,14 +55,29 @@ def county_most_under_18(counties):
 def state_with_most_counties(counties):
     """Return a state that has the most counties."""
     #1. Make a dictionary that has a key for each state and the values keep track of the number of counties in each state
-    
+    states={}
+    for data in counties:
+        state=data["State"]
+        if state in states:
+            states[state]+=1
+        else:
+            states[state] = 1
     #2. Find the state in the dictionary with the most counties
-    
+    moco = "CA"
+    for data in states:
+        if states[data] > states[moco]:
+            moco = data
     #3. Return the state with the most counties
-    
+    return(moco)
     
 def your_interesting_demographic_function(counties):
     """Compute and return an interesting fact using the demographic data about the counties in the US."""
-
+    #county with the highest percent female, percent female of that county
+    perfem = counties[0]
+    for data in counties:
+        if data["Miscellaneous"]["Percent Female"] > perfem["Miscellaneous"]["Percent Female"]:
+            perfem = data
+    return[perfem["County"],perfem["Miscellaneous"]["Percent Female"]]
+   
 if __name__ == '__main__':
     main()
